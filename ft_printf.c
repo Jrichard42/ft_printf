@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 16:47:08 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/04 11:35:33 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/07 07:08:44 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_ptr_convert	g_ptr_convert[3] = {{'%', &convert_percent},
 	{0, NULL}
 };
 
-static int				init_flags(t_printf *env, const char *restrict s)
+static int				check_flags(t_printf *env, const char *restrict s)
 {
 	int					i2;
 
@@ -45,50 +45,33 @@ static int				init_flags(t_printf *env, const char *restrict s)
 		++i2;
 	}	
 	if (!g_ptr_flag[i2].flag)
-		return (-1);
+		return (0);
 	return (1);
 }
 
-static void				init_min_field(t_printf *env, const char *restrict s)
+static void			check_min_field(t_printf *env, const char *restrict s)
 {
-	env->min_field = ft_atoi(s + env->i);
+	env->format.min_field = ft_atoi(s + env->i);
 	while (s && ft_isdigit(s[env->i]))
 		++env->i;
 }
 
-static void				init_precision(t_printf *env, const char *restrict s)
+static void				check_precision(t_printf *env, const char *restrict s)
 {
 	++env->i;
 	if (ft_isdigit(s[env->i]))
 	{
-		env->precision = ft_atoi(s + env->i);
+		env->format.precision = ft_atoi(s + env->i);
 		while (s && ft_isdigit(s[env->i]))
 			++env->i;
 	}
 }
 
-static int				parse_format(t_printf *env, const char *restrict s, va_list *ap)
+static void				check_conversion(t_printf *env, const char *restrict s, va_list *ap)
 {
 	int					i2;
-	int					ret;
 
 	i2 = 0;
-	ret = 0;
-	while (s[env.i])
-	{
-		ret = init_flags(env, s);
-		if (ft_isdigit(s[env->i]))
-			init_min_field(env, s);
-		if (s[env->i] == '.')
-			init_precision(env, s);
-	}
-
-	++env->i;
-	init_flags(env, s);
-	if (ft_isdigit(s[env->i]))
-		init_min_field(env, s);
-	if (s[env->i] == '.')
-		init_precision(env, s);
 	while (g_ptr_convert[i2].convert)
 	{
 		if (s[env->i] == g_ptr_convert[i2].c)
@@ -100,7 +83,28 @@ static int				parse_format(t_printf *env, const char *restrict s, va_list *ap)
 	}
 	if (!g_ptr_convert[i2].convert)
 		convert_no(env, s);
+}
+
+static int				parse_str(t_printf *env, const char *restrict s, va_list *ap)
+{
+	++env->i;
+	while (s[env->i])
+	{
+		if (check_flags(env, s))
+			;
+		else if (ft_isdigit(s[env->i]))
+			check_min_field(env, s);
+		else if (s[env->i] == '.')
+			check_precision(env, s);
+		else
+		{
+			check_conversion(env, s, ap);
+			return (1);
+		}
+		++env->i;
+	}
 	//reset env;
+	return (1);
 }
 
 int						ft_printf(const char *restrict format, ...)
@@ -108,19 +112,19 @@ int						ft_printf(const char *restrict format, ...)
 	va_list				ap;
 	t_printf			env;
 
-	ft_bzero(&env, sizeof(env));
+	reset_env(&env);
 	va_start(ap, format);
 	while (format[env.i])
 	{
 		if (format[env.i] == '%')
-			parse_format(&env, format, &ap);
+			parse_str(&env, format, &ap);
 		else
 		{
+			env.buff[env.i_buff] = format[env.i];
 			ft_putchar(format[env.i]);
-			++env.ret;
 		}
 		++env.i;
 	}
 	va_end(ap);
-	return (env.ret);
+	return (env.ret); // size
 }

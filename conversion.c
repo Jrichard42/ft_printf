@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 19:22:37 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/04 10:05:24 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/07 06:00:55 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,30 @@ void		padding(t_printf *env, int size)
 
 	i = 0;
 	c = ' ';
-	if (env->padding == 1)
+	if (env->format.padding == 1)
 		c = '0';
 	while (i < size)
 	{
 		ft_putchar(c);
 		++i;
-		++env->ret;
 	}
-	env->min_field = 0;
+	env->format.min_field = 0;
 }
 
 void		convert_no(t_printf *env, const char *restrict s)
 {
-	if (env->padding != 2)
-		padding(env, env->min_field - 1);
+	if (env->format.padding != 2)
+		padding(env, env->format.min_field - 1);
 	ft_putchar(s[env->i]);
-	++env->ret;
-	padding(env, env->min_field - 1);
+	padding(env, env->format.min_field - 1);
 }
 
 void		convert_percent(t_printf *env, va_list *ap)
 {
-	if (env->padding != 2)
-		padding(env, env->min_field - 1);
+	if (env->format.padding != 2)
+		padding(env, env->format.min_field - 1);
 	ft_putstr("%");
-	++env->ret;
-	padding(env, env->min_field - 1);
+	padding(env, env->format.min_field - 1);
 }
 
 void		convert_s(t_printf *env, va_list *ap)
@@ -57,9 +54,8 @@ void		convert_s(t_printf *env, va_list *ap)
 
 	s = va_arg(*ap, char *); //change ?
 	len = ft_strlen(s);
-	if (env->padding != 2)
-		padding(env, env->min_field - len);
+	if (env->format.padding != 2)
+		padding(env, env->format.min_field - len);
 	ft_putstr(s);
-	env->ret += len;
-	padding(env, env->min_field - len);
+	padding(env, env->format.min_field - len);
 }
