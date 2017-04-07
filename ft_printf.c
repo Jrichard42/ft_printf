@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 16:47:08 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/07 14:18:07 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/07 20:15:41 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int				copy_to_buff(t_printf *env, const char *s, int size)
 
 void			reset_env(t_printf *env)
 {
-	ft_bzero(env, sizeof(*env));
+	ft_bzero(&(env->format), sizeof(env->format));
 	env->format.precision = -1;
 }
 
@@ -53,5 +53,5 @@ int				ft_printf(const char *restrict format, ...)
 	va_end(ap);
 	ft_putstr(env.buff);
 	env.ret += ft_strlen(env.buff);
-	return (env.ret); // size
+	return (env.ret);
 }

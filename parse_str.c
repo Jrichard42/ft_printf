@@ -6,7 +6,7 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 13:19:39 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/07 14:27:06 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/07 20:15:34 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ static t_ptr_flag		g_ptr_flag[6] = {{'#', &alternate_flag},
 	{0, NULL}
 };
 
-static t_ptr_convert	g_ptr_convert[3] = {{'%', &convert_percent},
+static t_ptr_convert	g_ptr_convert[5] = {{'%', &convert_percent},
 	{'s', &convert_s},
+	{'d', &convert_d_i},
+	{'i', &convert_d_i},
 	{0, NULL}
 };
 
@@ -100,10 +102,10 @@ int						parse_str(t_printf *env, const char *restrict s, va_list *ap)
 		else
 		{
 			check_conversion(env, s, ap);
+			reset_env(env);
 			return (1);
 		}
 		++env->i;
 	}
-	//reset env;
 	return (1);
 }
