@@ -6,7 +6,7 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 13:19:39 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/07 13:23:42 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/07 14:27:06 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void			check_min_field(t_printf *env, const char *restrict s)
 	env->format.min_field = ft_atoi(s + env->i);
 	while (s && ft_isdigit(s[env->i]))
 		++env->i;
+	--env->i;
 }
 
 static void				check_precision(t_printf *env, const char *restrict s)
@@ -63,6 +64,7 @@ static void				check_precision(t_printf *env, const char *restrict s)
 		env->format.precision = ft_atoi(s + env->i);
 		while (s && ft_isdigit(s[env->i]))
 			++env->i;
+		--env->i;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 16:47:08 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/07 13:59:24 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/07 14:18:07 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-int		copy_to_buff(t_printf *env, char *s, int size)
+int				copy_to_buff(t_printf *env, const char *s, int size)
 {
 	if (env->i_buff + size >= PRINTF_BUFF - 1)
 	{
@@ -29,16 +29,16 @@ int		copy_to_buff(t_printf *env, char *s, int size)
 	env->i_buff += size;
 }
 
-void	reset_env(t_printf *env)
+void			reset_env(t_printf *env)
 {
 	ft_bzero(env, sizeof(*env));
 	env->format.precision = -1;
 }
 
-int						ft_printf(const char *restrict format, ...)
+int				ft_printf(const char *restrict format, ...)
 {
-	va_list				ap;
-	t_printf			env;
+	va_list		ap;
+	t_printf	env;
 
 	reset_env(&env);
 	va_start(ap, format);
