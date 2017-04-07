@@ -6,12 +6,14 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 16:47:26 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/07 06:27:08 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/07 13:59:37 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+# include <stdarg.h>
 
 # define PRINTF_BUFF 4096
 
@@ -35,5 +37,6 @@ typedef struct	s_printf
 
 int				ft_printf(const char *restrict format, ...);
 void			reset_env(t_printf *env);
+int				parse_str(t_printf *env, const char *restrict s, va_list *ap);
 
 #endif
