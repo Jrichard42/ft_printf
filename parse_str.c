@@ -6,7 +6,7 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 13:19:39 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/07 20:15:34 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/08 14:42:19 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int						parse_str(t_printf *env, const char *restrict s, va_list *ap)
 		else
 		{
 			check_conversion(env, s, ap);
-			reset_env(env);
+			reset_format(&(env->format));
 			return (1);
 		}
 		++env->i;

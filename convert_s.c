@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   convert_s.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/01 17:04:07 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/08 14:43:27 by jrichard         ###   ########.fr       */
+/*   Created: 2017/04/08 14:03:37 by jrichard          #+#    #+#             */
+/*   Updated: 2017/04/08 14:04:42 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
-#include "ft_printf.h"
+#include "conversion.h"
 
-int	main(int argc, char **argv)
+void		convert_s(t_printf *env, va_list *ap)
 {
-	int len;
-	int len2;
+	char	*s;
+	int		len;
+	//	wchar_t	*s;
 
-	ft_putstr("    mine : ");
-	len = ft_printf("p%020.110.1s\n", "toto");
-	ft_putstr("not mine : ");
-	len2 = printf("p%020.110.1s\n", "toto");
-	printf("my len = %d, not my len = %d\n", len, len2);
+	s = va_arg(*ap, char *); //change ?
+	len = ft_strlen(s);
+	if (env->format.precision != -1 && env->format.precision < len)
+		len = env->format.precision;
+	if (env->format.padding != 2)
+		padding(env, env->format.min_field - len, 0);
+	copy_to_buff(env, s, len);
+	padding(env, env->format.min_field - len, 0);
 }

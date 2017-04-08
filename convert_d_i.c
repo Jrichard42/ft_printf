@@ -6,7 +6,7 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 20:07:26 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/07 20:18:59 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/08 14:01:24 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void		convert_d_i(t_printf *env, va_list *ap)
 		return ;
 	len = ft_strlen(s);
 	sign = fill_sign(env, s, &len);
-
 	if (env->format.precision != -1 && env->format.precision > len)
 		len = env->format.precision;
 	if (env->format.padding != 2)
