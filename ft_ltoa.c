@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_ltoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 11:01:00 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/09 21:48:24 by jrichard         ###   ########.fr       */
+/*   Created: 2017/04/09 21:49:21 by jrichard          #+#    #+#             */
+/*   Updated: 2017/04/09 21:50:51 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static int	get_length(int nbr)
+static int	get_length(long long nbr)
 {
-	int ret;
+	int		ret;
 
 	ret = 0;
 	while (nbr / 10)
@@ -30,10 +30,10 @@ static int	get_length(int nbr)
 		return (ret + 1);
 }
 
-char		*ft_itoa(int nbr)
+char			*ft_ltoa(long nbr)
 {
-	char	*str;
-	int		i;
+	char		*str;
+	long long	i;
 
 	i = get_length(nbr);
 	if ((str = (char *)malloc((i + 1) * sizeof(*str))))

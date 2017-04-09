@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 16:47:08 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/09 18:48:43 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/09 22:22:07 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void			reset_format(t_format *format)
 {
 	ft_memset(format, 0, sizeof(*format));
 	format->precision = -1;
+	format->length_modifier = NONE;
 }
 
 void			init_env(t_printf *env)

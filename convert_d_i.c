@@ -6,7 +6,7 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 20:07:26 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/09 16:15:54 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/09 22:39:55 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,21 @@ static void	fill_sign(t_printf *env, char *s, int *len)
 	}
 }
 
+static char	*get_nb(t_printf *env, va_list *ap)
+{
+	if (env->format.length_modifier == HH)
+		return (ft_itoa((signed char)va_arg(*ap, int)));
+	if (env->format.length_modifier == H)
+		return (ft_itoa((short)va_arg(*ap, int)));
+	if (env->format.length_modifier == L)
+		return (ft_ltoa(va_arg(*ap, long)));
+	if (env->format.length_modifier == LL)
+		return (ft_ltoa(va_arg(*ap, long long)));
+	if (env->format.length_modifier == Z)
+		return (ft_ltoa(va_arg(*ap, size_t)));
+	return (ft_itoa(va_arg(*ap, int)));
+}
+
 void		convert_d_i(t_printf *env, va_list *ap)
 {
 	char	*s;
@@ -56,8 +71,7 @@ void		convert_d_i(t_printf *env, va_list *ap)
 	int		size_nb;
 
 	sign = 0;
-	if (!(s = ft_itoa(va_arg(*ap, int))))
-		return ;
+	s = get_nb(env, ap);
 	get_size_nb(env, &s, &size_nb, &sign);
 	if (env->format.padding != 2)
 		padding(env, env->format.min_field - size_nb, 0);

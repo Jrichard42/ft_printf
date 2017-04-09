@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 17:04:07 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/09 19:08:51 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/09 22:39:57 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	main(int argc, char **argv)
 	int len2;
 
 	ft_putstr("    mine : ");
-	len = ft_printf("p%hhhhhhhjzjzjzjjzhhhhllzd\n", -21);
+	len = ft_printf("p%ld%zd\n", 20000000000, -21);
 	ft_putstr("not mine : ");
-	len2 = printf("p%hhhhhhhhld\n", -21);
+	len2 = printf("p%ld%zd\n", 20000000000, -21);
 	printf("my len = %d, not my len = %d\n", len, len2);
 }

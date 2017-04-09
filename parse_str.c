@@ -6,7 +6,7 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 13:19:39 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/09 19:08:50 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/09 22:31:32 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-int						parse_str(t_printf *env, const char *restrict s, va_list *ap)
+int	parse_str(t_printf *env, const char *restrict s, va_list *ap)
 {
 	++env->i;
 	while (s[env->i])
@@ -31,6 +31,7 @@ int						parse_str(t_printf *env, const char *restrict s, va_list *ap)
 				;
 			else
 			{
+				check_conversion(env, s, ap);
 				reset_format(&(env->format));
 				return (1);
 			}
