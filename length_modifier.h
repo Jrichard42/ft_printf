@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion.h                                       :+:      :+:    :+:   */
+/*   length_modifier.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/01 19:20:11 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/09 18:51:31 by jrichard         ###   ########.fr       */
+/*   Created: 2017/04/09 16:49:46 by jrichard          #+#    #+#             */
+/*   Updated: 2017/04/09 18:53:34 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONVERSION_H
-# define CONVERSION_H
+#ifndef LENGTH_MODIFIER_H
+# define LENGTH_MODIFIER_H
 
-# include "stdarg.h"
 # include "ft_printf.h"
 
-typedef struct	s_ptr_convert
+typedef struct	s_ptr_length
 {
-	char		c;
-	void		(*convert)(t_printf *env, va_list *ap);
-}				t_ptr_convert;
+	char 		c;
+	void		(*length)(t_printf *env, const char *restrict s);
+}				t_ptr_length;
 
-void			padding(t_printf *env, int size, char overwrite);
-void			convert_no(t_printf *env,const char *restrict s);
-void			convert_percent(t_printf *env, va_list *ap);
-void			convert_s(t_printf *env, va_list *ap);
-void			convert_d_i(t_printf *env, va_list *ap);
+void			length_h(t_printf *env, const char *restrict s);
+void			length_l(t_printf *env, const char *restrict s);
+void			length_j(t_printf *env, const char *restrict s);
+void			length_z(t_printf *env, const char *restrict s);
 
 #endif

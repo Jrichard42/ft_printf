@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   checks.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/04 10:06:00 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/07 07:12:26 by jrichard         ###   ########.fr       */
+/*   Created: 2017/04/09 18:31:52 by jrichard          #+#    #+#             */
+/*   Updated: 2017/04/09 18:54:20 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf.h"
+#ifndef CHECKS_H
+# define CHECKS_H
 
-int		copy_to_buff(t_printf *env, char *s, int size)
-{
-	if (env->i_buff + size >= PRINTF_BUFF - 1)
-	{
-		env->ret += PRINTF_BUFF - 1;
-		ft_bzero(&env->buff, PRINTF_BUFF);
-		env->i_buff = 0;
-	}
-	ft_strncpy(env->buff, s, size);
-}
+# include "ft_printf.h"
 
-void	reset_env(t_printf *env)
-{
-	ft_bzero(env, sizeof(*env));
-	env->format.precision = -1;
-}
+int		check_flags(t_printf *env, const char *restrict s);
+void	check_min_field(t_printf *env, const char *restrict s);
+void	check_precision(t_printf *env, const char *restrict s);
+void	check_conversion(t_printf *env, const char *restrict s, va_list *ap);
+int		check_length_modifier(t_printf *env, const char *restrict s);
+
+#endif

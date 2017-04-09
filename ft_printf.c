@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 16:47:08 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/08 15:08:00 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/09 18:48:43 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-int				copy_to_buff(t_printf *env, const char *s, int size)
+void			copy_to_buff(t_printf *env, const char *s, int size)
 {
 	if (env->i_buff + size >= PRINTF_BUFF - 1)
 	{
