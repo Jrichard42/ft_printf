@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   convert_DOU.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/01 17:04:07 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/11 20:39:20 by jrichard         ###   ########.fr       */
+/*   Created: 2017/04/11 20:05:48 by jrichard          #+#    #+#             */
+/*   Updated: 2017/04/11 20:38:50 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
-#include "ft_printf.h"
+#include "conversion.h"
 
-int	main(int argc, char **argv)
+void		convert_D(t_printf *env, va_list *ap)
 {
-	int len;
-	int len2;
-	char *s;
-	int i;
+	if (env->format.length_modifier < L)
+		env->format.length_modifier = L;
+	convert_d_i(env, ap);
+}
 
-	ft_putstr("    mine : ");
-	len = ft_printf("p%l.10D\n", 200000000000);
-	ft_putstr("not mine : ");
-	len2 = printf("p%l.10D\n", 200000000000);
-	printf("my len = %d, not my len = %d\n", len, len2);
+void		convert_U(t_printf *env, va_list *ap)
+{
+	if (env->format.length_modifier < L)
+		env->format.length_modifier = L;
+	convert_u(env, ap);
 }

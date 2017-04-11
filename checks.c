@@ -24,12 +24,14 @@ static t_ptr_flag		g_ptr_flag[6] = {{'#', &alternate_flag},
 	{0, NULL}
 };
 
-static t_ptr_convert	g_ptr_convert[7] = {{'%', &convert_percent},
+static t_ptr_convert	g_ptr_convert[9] = {{'%', &convert_percent},
 	{'s', &convert_s},
 	{'d', &convert_d_i},
+	{'D', &convert_D},
 	{'i', &convert_d_i},
 	{'c', &convert_c},
 	{'u', &convert_u},
+	{'U', &convert_U},
 	{0, NULL}
 };
 

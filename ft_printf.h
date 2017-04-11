@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 16:47:26 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/11 17:08:40 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/11 20:32:58 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 
 typedef enum    e_type
 {
-	H,
+	NONE,
 	HH,
+	H,
 	L,
 	LL,
 	J,
-	Z,
-	NONE
+	Z
 }               s_type;
 
 typedef struct	s_format
