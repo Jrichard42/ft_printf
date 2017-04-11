@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 16:47:26 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/09 22:26:14 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/11 17:08:40 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct	s_printf
 
 int				ft_printf(const char *restrict format, ...);
 void			copy_to_buff(t_printf *env, const char *s, int size);
+void			padding(t_printf *env, int size, char overwrite);
 void			reset_format(t_format *format);
 void			reset_env(t_printf *env);
 int				parse_str(t_printf *env, const char *restrict s, va_list *ap);

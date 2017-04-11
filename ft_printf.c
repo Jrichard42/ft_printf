@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 16:47:08 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/09 22:22:07 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/11 18:00:01 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,45 @@
 #include "libft.h"
 #include "ft_printf.h"
 
+void		padding(t_printf *env, int size, char overwrite)
+{
+	int		i;
+	char	c;
+
+	i = 0;
+	c = ' ';
+	if (env->format.padding == 1)
+		c = '0';
+	if (overwrite)
+		c = overwrite;
+	while (i < size)
+	{
+		copy_to_buff(env, &c, 1);
+		++i;
+	}
+	env->format.min_field = 0;
+}
+
 void			copy_to_buff(t_printf *env, const char *s, int size)
 {
-	if (env->i_buff + size >= PRINTF_BUFF - 1)
+	while (size)
 	{
-		env->ret += ft_strlen(env->buff);
-		ft_bzero(&env->buff, PRINTF_BUFF);
-		env->i_buff = 0;
+		if (size >= PRINTF_BUFF - env->i_buff)
+		{
+			ft_strncpy(env->buff + env->i_buff, s, PRINTF_BUFF - env->i_buff - 1);
+			size -= PRINTF_BUFF - env->i_buff - 1;
+			env->ret += ft_strlen(env->buff);
+			ft_putstr(env->buff);
+			ft_bzero(&env->buff, PRINTF_BUFF);
+			env->i_buff = 0;
+		}
+		else
+		{
+			ft_strncpy(env->buff + env->i_buff, s, size);
+			env->i_buff += size;
+			size = 0;
+		}
 	}
-	ft_strncpy(env->buff + env->i_buff, s, size);
-	env->i_buff += size;
 }
 
 void			reset_format(t_format *format)

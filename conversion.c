@@ -6,31 +6,12 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 19:22:37 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/09 22:26:44 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/11 17:07:41 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "conversion.h"
-
-void		padding(t_printf *env, int size, char overwrite)
-{
-	int		i;
-	char	c;
-
-	i = 0;
-	c = ' ';
-	if (env->format.padding == 1)
-		c = '0';
-	if (overwrite)
-		c = overwrite;
-	while (i < size)
-	{
-		copy_to_buff(env, &c, 1);
-		++i;
-	}
-	env->format.min_field = 0;
-}
 
 void		convert_no(t_printf *env, const char *restrict s)
 {
