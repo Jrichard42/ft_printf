@@ -6,7 +6,7 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 20:07:26 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/11 23:02:18 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/12 04:04:09 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,25 @@ static char	*get_nb(t_printf *env, va_list *ap)
 	return (ft_itoa(va_arg(*ap, int)));
 }
 
+static void	print_padding(t_printf *env, char *s, char sign, int size_nb)
+{
+	if (env->format.padding != 2 && env->format.padding != 1)
+		padding(env, env->format.min_field - size_nb, 0);
+	if (sign == '-' || sign == '+' || sign == ' ')
+	{
+		copy_to_buff(env, &sign, 1);
+		if (env->format.padding == 1)
+			padding(env, env->format.min_field - size_nb, 0);
+		padding_precision(env, size_nb - 1 - ft_strlen(s));
+	}
+	else
+	{
+		if (env->format.padding == 1)
+			padding(env, env->format.min_field - size_nb, 0);
+		padding_precision(env, size_nb - ft_strlen(s));
+	}
+}
+
 void		convert_d_i(t_printf *env, va_list *ap)
 {
 	char	*s;
@@ -78,17 +97,7 @@ void		convert_d_i(t_printf *env, va_list *ap)
 	get_size_nb(env, &s, &size_nb, &sign);
 	if (env->format.precision != -1 && env->format.padding == 1)
 		env->format.padding = 0;
-	if (env->format.padding != 2 && env->format.padding != 1)
-		padding(env, env->format.min_field - size_nb, 0);
-	if (sign == '-' || sign == '+' || sign == ' ')
-	{
-		copy_to_buff(env, &sign, 1);
-		if (env->format.padding == 1)
-			padding(env, env->format.min_field - size_nb, 0);
-		padding_precision(env, size_nb - 1 - ft_strlen(s));
-	}
-	else
-		padding_precision(env, size_nb - ft_strlen(s));
+	print_padding(env, s, sign, size_nb);
 	copy_to_buff(env, s, ft_strlen(s));
 	padding(env, env->format.min_field - size_nb, 0);
 	if (sign == '-' || sign == '0')
