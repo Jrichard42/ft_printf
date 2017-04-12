@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 15:10:15 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/11 23:05:22 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/12 04:26:38 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ void		convert_u(t_printf *env, va_list *ap)
 
 	sign = 0;
 	s = get_nb(env, ap);
-	printf("plop %s plop\n", s);
 	get_size_nb(env, &s, &size_nb, &sign);
-	if (env->format.precision != -1)
+	if (env->format.precision != -1 && env->format.padding == 1)
 		env->format.padding = 0;
-	if (env->format.padding != 2 && env->format.padding != 1)
+	if (env->format.padding != 2)
 		padding(env, env->format.min_field - size_nb, 0);
 	padding_precision(env, size_nb - ft_strlen(s));
 	copy_to_buff(env, s, ft_strlen(s));
