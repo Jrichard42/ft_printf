@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 19:20:11 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/12 04:38:48 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/13 16:22:48 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void			convert_c(t_printf *env, va_list *ap);
 void			convert_u(t_printf *env, va_list *ap);
 void			convert_U(t_printf *env, va_list *ap);
 void			convert_x(t_printf *env, va_list *ap);
+void			convert_x2(t_printf *env, va_list *ap);
 void			convert_o(t_printf *env, va_list *ap);
 void			convert_O(t_printf *env, va_list *ap);
 

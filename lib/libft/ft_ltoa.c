@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/09 21:49:21 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/11 22:24:21 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/13 18:02:11 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int		get_length(long long nbr)
 char			*ft_ltoa(long long nbr)
 {
 	char		*str;
-	long long	i;
+	int			i;
 
 	i = get_length(nbr);
 	if ((str = (char *)malloc((i + 1) * sizeof(*str))))

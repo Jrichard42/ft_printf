@@ -6,7 +6,7 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 20:07:26 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/12 04:23:15 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/13 18:06:24 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	*get_nb(t_printf *env, va_list *ap)
 	if (env->format.length_modifier == J)
 		return (ft_ltoa(va_arg(*ap, long long)));
 	if (env->format.length_modifier == Z)
-		return (ft_ltoa(va_arg(*ap, size_t)));
+		return (ft_uitoa(va_arg(*ap, size_t)));
 	return (ft_itoa(va_arg(*ap, int)));
 }
 

@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_uitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 11:01:00 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/13 18:01:54 by jrichard         ###   ########.fr       */
+/*   Created: 2017/04/13 18:02:00 by jrichard          #+#    #+#             */
+/*   Updated: 2017/04/13 18:03:02 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdlib.h>
 #include "libft.h"
 
-static int	get_length(int nbr)
+static int	get_length(unsigned int nbr)
 {
 	int ret;
 
@@ -24,13 +23,10 @@ static int	get_length(int nbr)
 		nbr = nbr / 10;
 		++ret;
 	}
-	if (nbr < 0)
-		return (ret + 2);
-	else
-		return (ret + 1);
+	return (ret + 1);
 }
 
-char		*ft_itoa(int nbr)
+char		*ft_uitoa(unsigned int nbr)
 {
 	char	*str;
 	int		i;
@@ -41,17 +37,9 @@ char		*ft_itoa(int nbr)
 		str[i--] = '\0';
 		while (nbr / 10)
 		{
-			if (nbr < 0)
-				str[i] = -(nbr % 10) + 48;
-			else
-				str[i] = (nbr % 10) + 48;
+			str[i] = (nbr % 10) + 48;
 			nbr = nbr / 10;
 			--i;
-		}
-		if (nbr < 0)
-		{
-			nbr = -nbr;
-			str[0] = '-';
 		}
 		str[i] = nbr % 10 + 48;
 		return (str);

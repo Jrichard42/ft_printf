@@ -24,7 +24,7 @@ static t_ptr_flag		g_ptr_flag[6] = {{'#', &alternate_flag},
 	{0, NULL}
 };
 
-static t_ptr_convert	g_ptr_convert[12] = {{'%', &convert_percent},
+static t_ptr_convert	g_ptr_convert[13] = {{'%', &convert_percent},
 	{'s', &convert_s},
 	{'d', &convert_d_i},
 	{'D', &convert_D},
@@ -33,6 +33,7 @@ static t_ptr_convert	g_ptr_convert[12] = {{'%', &convert_percent},
 	{'u', &convert_u},
 	{'U', &convert_U},
 	{'x', &convert_x},
+	{'X', &convert_x2},
 	{'o', &convert_o},
 	{'O', &convert_O},
 	{0, NULL}
@@ -42,7 +43,7 @@ static t_ptr_length		g_ptr_length[6] = {{'h', &length_h},
 	{'l', &length_l},
 	{'j', &length_j},
 	{'z', &length_z},
-	{'\0', NULL}
+	{0, NULL}
 };
 
 int						check_flags(t_printf *env, const char *restrict s)
