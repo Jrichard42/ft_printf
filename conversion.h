@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 19:20:11 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/13 19:22:49 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/13 22:28:01 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char			*ft_ltoa(long long nb);
 void			convert_no(t_printf *env,const char *restrict s);
 void			convert_percent(t_printf *env, va_list *ap);
 void			convert_s(t_printf *env, va_list *ap);
+void			convert_s2(t_printf *env, va_list *ap);
 void			convert_d_i(t_printf *env, va_list *ap);
 void			convert_D(t_printf *env, va_list *ap);
 void			convert_c(t_printf *env, va_list *ap);

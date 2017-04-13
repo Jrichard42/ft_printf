@@ -24,8 +24,9 @@ static t_ptr_flag		g_ptr_flag[6] = {{'#', &alternate_flag},
 	{0, NULL}
 };
 
-static t_ptr_convert	g_ptr_convert[14] = {{'%', &convert_percent},
+static t_ptr_convert	g_ptr_convert[15] = {{'%', &convert_percent},
 	{'s', &convert_s},
+	{'S', &convert_s2},
 	{'d', &convert_d_i},
 	{'D', &convert_D},
 	{'i', &convert_d_i},

@@ -6,10 +6,11 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 17:04:07 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/13 19:40:01 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/13 23:30:49 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <wchar.h>
 #include <stdio.h>
 #include "libft.h"
 #include "ft_printf.h"
@@ -20,12 +21,14 @@ int	main(int argc, char **argv)
 {
 	int len;
 	int len2;
-	char *s;
 	int i;
+	wchar_t s[50] = L"Salut G\x82rard !";
+	char happy[] = { 0xe2, 0x98, 0xba };
+
 
 	ft_putstr("    mine : ");
-	len = ft_printf("p%.0u\n", 0);
+	len = ft_printf("p%S chiffre\n", s);
 	ft_putstr("not mine : ");
-	len2 = printf("p%.0u\n", 0);
+	len2 = printf("p%S chiffre\n", happy);
 	printf("my len = %d, not my len = %d\n", len, len2);
 }

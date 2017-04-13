@@ -6,10 +6,12 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 20:07:26 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/13 20:11:55 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/13 21:39:51 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <limits.h>
 #include "libft.h"
 #include "conversion.h"
 
