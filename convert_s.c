@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/08 14:03:37 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/11 15:31:11 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/14 16:24:44 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void		convert_s(t_printf *env, va_list *ap)
 {
 	char	*s;
 	int		len;
-	//	wchar_t	*s;
+	char	nulltab[7];
 
-	s = va_arg(*ap, char *); //change ?
+	ft_strcpy(nulltab, "(null)\0");
+	s = va_arg(*ap, char *);
+	if (!s)
+		s = nulltab;
 	len = ft_strlen(s);
 	if (env->format.precision != -1 && env->format.precision < len)
 		len = env->format.precision;

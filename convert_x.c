@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 22:37:21 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/13 18:48:52 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/14 21:22:56 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	padding_precision(t_printf *env, int size)
 
 static void	get_size_nb(t_printf *env, char **s, int *size_nb, char *sign)
 {
+	if ((*s)[0] == '0')
+		env->format.alternate = 0;
 	if ((*s)[0] == '0' && env->format.precision == 0)
 	{
 		*sign = '0';
@@ -69,17 +71,19 @@ void		convert_x(t_printf *env, va_list *ap)
 	get_size_nb(env, &s, &size_nb, &sign);
 	if (env->format.precision != -1 && env->format.padding == 1)
 		env->format.padding = 0;
+	if (env->format.alternate == 1 && env->format.padding != 0)
+		copy_to_buff(env, "0x", 2);
 	if (env->format.padding != 2)
 		padding(env, env->format.min_field - size_nb, 0);
-	if (env->format.alternate == 1)
-	{
+	if (env->format.alternate == 1 && env->format.padding == 0)
 		copy_to_buff(env, "0x", 2);
-		size_nb -= 2;
-	}
-	padding_precision(env, size_nb - ft_strlen(s));
 	if (env->format.alternate == 1)
-		size_nb += 2;
+		padding_precision(env, size_nb - 2 - ft_strlen(s));
+	else
+		padding_precision(env, size_nb - ft_strlen(s));
 	copy_to_buff(env, s, ft_strlen(s));
 	padding(env, env->format.min_field - size_nb, 0);
+	if (sign == '0')
+		--s;
 	ft_strdel(&s);
 }

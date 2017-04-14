@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 16:47:08 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/13 16:23:17 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/14 19:10:47 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,15 @@ void			copy_to_buff(t_printf *env, const char *s, int size)
 		{
 			ft_strncpy(env->buff + env->i_buff, s, PRINTF_BUFF - env->i_buff - 1);
 			size -= PRINTF_BUFF - env->i_buff - 1;
-			env->ret += ft_strlen(env->buff);
-			ft_putstr(env->buff);
+			env->ret += PRINTF_BUFF - env->i_buff - 1;
+			write(1, env->buff, PRINTF_BUFF);
 			ft_bzero(&env->buff, PRINTF_BUFF);
 			env->i_buff = 0;
 		}
 		else
 		{
 			ft_strncpy(env->buff + env->i_buff, s, size);
+			env->ret += size;
 			env->i_buff += size;
 			size = 0;
 		}
@@ -86,10 +87,10 @@ int				ft_printf(const char *restrict format, ...)
 			parse_str(&env, format, &ap);
 		else
 			copy_to_buff(&env, &format[env.i], 1);
-		++env.i;
+		if (format[env.i])
+			++env.i;
 	}
 	va_end(ap);
-	ft_putstr(env.buff);
-	env.ret += ft_strlen(env.buff);
+	write(1, env.buff, env.i_buff);
 	return (env.ret);
 }

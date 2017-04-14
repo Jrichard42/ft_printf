@@ -24,13 +24,14 @@ static t_ptr_flag		g_ptr_flag[6] = {{'#', &alternate_flag},
 	{0, NULL}
 };
 
-static t_ptr_convert	g_ptr_convert[15] = {{'%', &convert_percent},
+static t_ptr_convert	g_ptr_convert[16] = {{'%', &convert_percent},
 	{'s', &convert_s},
 	{'S', &convert_s2},
 	{'d', &convert_d_i},
 	{'D', &convert_D},
 	{'i', &convert_d_i},
 	{'c', &convert_c},
+	{'C', &convert_c2},
 	{'u', &convert_u},
 	{'U', &convert_U},
 	{'x', &convert_x},
@@ -81,8 +82,10 @@ void					check_precision(t_printf *env, const char *restrict s)
 		env->format.precision = ft_atoi(s + env->i);
 		while (s && ft_isdigit(s[env->i]))
 			++env->i;
-		--env->i;
 	}
+	else
+		env->format.precision = 0;	
+	--env->i;
 }
 
 void					check_conversion(t_printf *env, const char *restrict s, va_list *ap)

@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 16:21:44 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/13 16:22:32 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/14 17:07:21 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	padding_precision(t_printf *env, int size)
 
 static void	get_size_nb(t_printf *env, char **s, int *size_nb, char *sign)
 {
+	if ((*s)[0] == '0')
+		env->format.alternate = 0;
 	if ((*s)[0] == '0' && env->format.precision == 0)
 	{
 		*sign = '0';
@@ -73,7 +75,7 @@ void		convert_x2(t_printf *env, va_list *ap)
 		padding(env, env->format.min_field - size_nb, 0);
 	if (env->format.alternate == 1)
 	{
-		copy_to_buff(env, "0x", 2);
+		copy_to_buff(env, "0X", 2);
 		size_nb -= 2;
 	}
 	padding_precision(env, size_nb - ft_strlen(s));
@@ -81,5 +83,7 @@ void		convert_x2(t_printf *env, va_list *ap)
 		size_nb += 2;
 	copy_to_buff(env, s, ft_strlen(s));
 	padding(env, env->format.min_field - size_nb, 0);
+	if (sign == '0')
+		--s;
 	ft_strdel(&s);
 }
