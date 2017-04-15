@@ -1,31 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_c.c                                        :+:      :+:    :+:   */
+/*   convert_s2-2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/09 16:16:00 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/16 00:23:41 by jrichard         ###   ########.fr       */
+/*   Created: 2017/04/16 01:41:58 by jrichard          #+#    #+#             */
+/*   Updated: 2017/04/16 01:42:36 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <wchar.h>
 #include "libft.h"
 #include "conversion.h"
 
-int			convert_c(t_printf *env, va_list *ap)
-{
-	char	c;
-
-	if (env->format.length_modifier == L)
-		return (convert_c2(env, ap));
-	else
-	{
-		c = (char)va_arg(*ap, int);
-		if (env->format.padding != 2)
-			padding(env, env->format.min_field - 1, 0);
-		copy_to_buff(env, &c, 1);
-		padding(env, env->format.min_field - 1, 0);
-		return (1);
-	}
-}

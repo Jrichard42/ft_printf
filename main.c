@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 17:04:07 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/16 00:08:44 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/16 01:53:18 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	int len;
 	int len2;
 	int i;
-	wchar_t s[] = L"罅纗èe";
+	wchar_t s[] = L"ሴሴ";
 
 	int test = s[0];
 
@@ -44,9 +44,10 @@ int	main(int argc, char **argv)
 	printf("toto %d toto\n", test);
 	printf ("MB_CUR_MAX = %d\n", MB_CUR_MAX);
 */
+	char c;
 	ft_putstr("    mine : ");
-	len = ft_printf("%030S\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	len = ft_printf("%5.4S\n", L"ሴሴ");
 	ft_putstr("not mine : ");
-	len2 = printf("%030S\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	len2 = printf("%5.4S\n", L"ሴሴ");
 	printf("my len = %d, not my len = %d\n", len, len2);
 }

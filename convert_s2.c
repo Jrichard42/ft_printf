@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 22:26:35 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/16 00:08:41 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/16 01:53:16 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,25 @@
 #include "libft.h"
 #include "conversion.h"
 
-int					ft_wclen(wchar_t *s)
+/*int					get_real_precision(t_printf *env, wchar_t *s, int len)
 {
-	int				i;
+	wchar_t			c;
 
-	i = 0;
-	while (s[i])
-		++i;
-	return (i);
-}
+	if (!s)
+	{
+		if (env->format.precision != -1 && env->format.precision < len)
+			return (env->format.precision);
+		else
+			return (len);
+	}
+	else if (env->format.precision != -1 && env->format.precision < len)
+	{
+		while (*s)
+		{
+			c = *s;
+		}
+	}
+}*/
 
 static int			put_wchar(t_printf *env, wchar_t c, int len)
 {
@@ -112,10 +122,9 @@ int					convert_s2(t_printf *env, va_list *ap)
 	ft_strcpy(nulltab, "(null)\0");
 	s = va_arg(*ap, wchar_t *);
 	if (s)
-		len = ft_wclen(s);
+		len = ft_wcslen(s);
 	else
 		len = ft_strlen(nulltab);
-		printf ("plop %d\n", len);
 	if (env->format.precision != -1 && env->format.precision < len)
 		len = env->format.precision;
 	if (env->format.padding != 2)
