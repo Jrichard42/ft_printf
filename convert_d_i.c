@@ -6,7 +6,7 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 20:07:26 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/14 21:24:44 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/15 19:38:20 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	print_padding(t_printf *env, char *s, char sign, int size_nb)
 	}
 }
 
-void		convert_d_i(t_printf *env, va_list *ap)
+int			convert_d_i(t_printf *env, va_list *ap)
 {
 	char	*s;
 	char	sign;
@@ -105,4 +105,5 @@ void		convert_d_i(t_printf *env, va_list *ap)
 	if (sign == '-' || sign == '0')
 		--s;
 	ft_strdel(&s);
+	return (1);
 }

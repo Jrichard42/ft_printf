@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 22:37:21 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/14 21:22:56 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/15 20:50:35 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	get_size_nb(t_printf *env, char **s, int *size_nb, char *sign)
 		*size_nb += 2;
 }
 
-static char *get_nb(t_printf *env, va_list *ap)
+static char	*get_nb(t_printf *env, va_list *ap)
 {
 	if (env->format.length_modifier == HH)
 		return (ft_itoa_base((unsigned char)va_arg(*ap, unsigned int), 16, 0));
@@ -60,7 +60,7 @@ static char *get_nb(t_printf *env, va_list *ap)
 	return (ft_itoa_base(va_arg(*ap, unsigned int), 16, 0));
 }
 
-void		convert_x(t_printf *env, va_list *ap)
+int			convert_x(t_printf *env, va_list *ap)
 {
 	char	*s;
 	char	sign;
@@ -86,4 +86,5 @@ void		convert_x(t_printf *env, va_list *ap)
 	if (sign == '0')
 		--s;
 	ft_strdel(&s);
+	return (1);
 }

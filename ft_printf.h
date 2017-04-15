@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 16:47:26 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/14 17:15:07 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/15 22:22:51 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define PRINTF_BUFF 4096
 
-typedef enum    e_type
+typedef enum	e_type
 {
 	NONE,
 	HH,
@@ -26,7 +26,7 @@ typedef enum    e_type
 	LL,
 	J,
 	Z
-}               s_type;
+}				t_type;
 
 typedef struct	s_format
 {
@@ -35,7 +35,7 @@ typedef struct	s_format
 	char		signing;
 	int			min_field;
 	int			precision;
-	s_type		length_modifier;
+	t_type		length_modifier;
 }				t_format;
 
 typedef struct	s_printf

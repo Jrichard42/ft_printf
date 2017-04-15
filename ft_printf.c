@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 16:47:08 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/14 19:10:47 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/15 22:29:07 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-void		padding(t_printf *env, int size, char overwrite)
+void			padding(t_printf *env, int size, char overwrite)
 {
-	int		i;
-	char	c;
+	int			i;
+	char		c;
 
 	i = 0;
 	c = ' ';
@@ -41,7 +41,8 @@ void			copy_to_buff(t_printf *env, const char *s, int size)
 	{
 		if (size >= PRINTF_BUFF - env->i_buff)
 		{
-			ft_strncpy(env->buff + env->i_buff, s, PRINTF_BUFF - env->i_buff - 1);
+			ft_strncpy(env->buff + env->i_buff, s,
+					PRINTF_BUFF - env->i_buff - 1);
 			size -= PRINTF_BUFF - env->i_buff - 1;
 			env->ret += PRINTF_BUFF - env->i_buff - 1;
 			write(1, env->buff, PRINTF_BUFF);
@@ -78,13 +79,18 @@ int				ft_printf(const char *restrict format, ...)
 {
 	va_list		ap;
 	t_printf	env;
+	int			stop;
 
+	stop = 0;
 	init_env(&env);
 	va_start(ap, format);
-	while (format[env.i])
+	while (format[env.i] && !stop)
 	{
 		if (format[env.i] == '%')
-			parse_str(&env, format, &ap);
+		{
+			if (!parse_str(&env, format, &ap))
+				++stop;
+		}
 		else
 			copy_to_buff(&env, &format[env.i], 1);
 		if (format[env.i])
@@ -92,5 +98,7 @@ int				ft_printf(const char *restrict format, ...)
 	}
 	va_end(ap);
 	write(1, env.buff, env.i_buff);
+	if (stop == 1)
+		return (-1);
 	return (env.ret);
 }

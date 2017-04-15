@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 18:48:33 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/14 21:28:54 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/15 20:50:59 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,22 @@ static void	get_size_nb(t_printf *env, char **s, int *size_nb, char *sign)
 	*size_nb += 2;
 }
 
-static char *get_nb(t_printf *env, va_list *ap)
+static char	*get_nb(va_list *ap)
 {
 	return (ft_ltoa_base((unsigned long long)va_arg(*ap, void *), 16, 0));
 }
 
-void		convert_p(t_printf *env, va_list *ap)
+int			convert_p(t_printf *env, va_list *ap)
 {
 	char	*s;
 	char	sign;
 	int		size_nb;
 
 	sign = 0;
-	s = get_nb(env, ap);
+	s = get_nb(ap);
 	get_size_nb(env, &s, &size_nb, &sign);
 	if (env->format.padding != 0)
-		copy_to_buff(env, "0x", 2);	
+		copy_to_buff(env, "0x", 2);
 	if (env->format.padding != 2)
 		padding(env, env->format.min_field - size_nb, 0);
 	if (env->format.padding == 0)
@@ -68,4 +68,5 @@ void		convert_p(t_printf *env, va_list *ap)
 	if (sign == '0')
 		--s;
 	ft_strdel(&s);
+	return (1);
 }

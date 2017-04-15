@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/09 16:49:46 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/11 20:09:47 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/15 22:23:21 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct	s_ptr_length
 {
-	char 		c;
+	char		c;
 	void		(*length)(t_printf *env, const char *restrict s);
 }				t_ptr_length;
 

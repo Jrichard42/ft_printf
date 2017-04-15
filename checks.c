@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 13:19:39 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/09 18:29:37 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/15 22:31:20 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +27,16 @@ static t_ptr_convert	g_ptr_convert[16] = {{'%', &convert_percent},
 	{'s', &convert_s},
 	{'S', &convert_s2},
 	{'d', &convert_d_i},
-	{'D', &convert_D},
+	{'D', &convert_d2},
 	{'i', &convert_d_i},
 	{'c', &convert_c},
 	{'C', &convert_c2},
 	{'u', &convert_u},
-	{'U', &convert_U},
+	{'U', &convert_u2},
 	{'x', &convert_x},
 	{'X', &convert_x2},
 	{'o', &convert_o},
-	{'O', &convert_O},
+	{'O', &convert_o2},
 	{'p', &convert_p},
 	{0, NULL}
 };
@@ -62,7 +61,7 @@ int						check_flags(t_printf *env, const char *restrict s)
 			return (1);
 		}
 		++i2;
-	}	
+	}
 	return (0);
 }
 
@@ -84,11 +83,12 @@ void					check_precision(t_printf *env, const char *restrict s)
 			++env->i;
 	}
 	else
-		env->format.precision = 0;	
+		env->format.precision = 0;
 	--env->i;
 }
 
-void					check_conversion(t_printf *env, const char *restrict s, va_list *ap)
+int						check_conversion(t_printf *env,
+		const char *restrict s, va_list *ap)
 {
 	int					i2;
 
@@ -97,16 +97,19 @@ void					check_conversion(t_printf *env, const char *restrict s, va_list *ap)
 	{
 		if (s[env->i] == g_ptr_convert[i2].c)
 		{
-			g_ptr_convert[i2].convert(env, ap);
+			if (!g_ptr_convert[i2].convert(env, ap))
+				return (0);
 			break ;
 		}
 		++i2;
 	}
 	if (!g_ptr_convert[i2].convert)
 		convert_no(env, s);
+	return (1);
 }
 
-int						check_length_modifier(t_printf *env, const char *restrict s)
+int						check_length_modifier(t_printf *env,
+		const char *restrict s)
 {
 	int					i2;
 

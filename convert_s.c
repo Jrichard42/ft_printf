@@ -6,14 +6,14 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/08 14:03:37 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/14 16:24:44 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/15 22:35:44 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "conversion.h"
 
-void		convert_s(t_printf *env, va_list *ap)
+int			convert_s(t_printf *env, va_list *ap)
 {
 	char	*s;
 	int		len;
@@ -30,4 +30,5 @@ void		convert_s(t_printf *env, va_list *ap)
 		padding(env, env->format.min_field - len, 0);
 	copy_to_buff(env, s, len);
 	padding(env, env->format.min_field - len, 0);
+	return (1);
 }

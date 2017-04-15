@@ -6,7 +6,7 @@
 #    By: jrichard <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/14 15:21:48 by jrichard          #+#    #+#              #
-#    Updated: 2017/04/14 22:51:09 by jrichard         ###   ########.fr        #
+#    Updated: 2017/04/15 22:31:45 by jrichard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFT_DIR = libft
 LIBFT = libft/libft.a
 
 SRC = ft_printf.c parse_str.c checks.c flags.c conversion.c length_modifier.c \
-	  convert_s.c convert_s2.c convert_d_i.c convert_DOU.c convert_c.c \
+	  convert_s.c convert_s2.c convert_d_i.c convert_dou2.c convert_c.c \
 	  convert_u.c convert_x.c convert_x2.c convert_o.c convert_p.c \
 	  convert_c2.c
 

@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 15:10:15 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/13 21:12:04 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/15 19:39:29 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	*get_nb(t_printf *env, va_list *ap)
 	return (ft_uitoa(va_arg(*ap, unsigned int)));
 }
 
-void		convert_u(t_printf *env, va_list *ap)
+int			convert_u(t_printf *env, va_list *ap)
 {
 	char	*s;
 	char	sign;
@@ -77,4 +77,5 @@ void		convert_u(t_printf *env, va_list *ap)
 	if (sign == '0')
 		--s;
 	ft_strdel(&s);
+	return (1);
 }
