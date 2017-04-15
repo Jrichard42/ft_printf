@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 22:26:35 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/15 23:30:44 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/16 00:08:41 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ static int			put_wchar(t_printf *env, wchar_t c, int len)
 	else
 		tab[++i] = first_byte;
 	ret = i;
-	while (i >= 0 && (i <= len || len != env->format.precision))
-		copy_to_buff(env, (char *)&(tab[i--]), 1);
-	if (i > len)
+	if (i > len && len != -1)
 		return (0);
-	return (ret);
+	while (i >= 0)
+		copy_to_buff(env, (char *)&(tab[i--]), 1);
+	return (ret + 1);
 }
 
 static int			check_char(wchar_t c)
@@ -81,11 +81,11 @@ static int			put_str_in_tab(t_printf *env, wchar_t *s, int len)
 	int				ret2;
 
 	i = 0;
-	while (s[i] != 0)
+	while (s[i] != 0 && len)
 	{
 		ret = check_char(s[i]);
 		if (ret == -1)
-			return (0);
+			return (-1);
 		if (!ret)
 		{
 			copy_to_buff(env, (char *)&(s[i]), 1);
@@ -94,9 +94,9 @@ static int			put_str_in_tab(t_printf *env, wchar_t *s, int len)
 		else
 		{
 			ret2 = put_wchar(env, s[i], len);
-			if (len == env->format.precision && ret2 == 0)
+			len -= ret2;
+			if (ret2 == 0)
 				return (0);
-			len-= ret2;
 		}
 		++i;
 	}
@@ -115,6 +115,7 @@ int					convert_s2(t_printf *env, va_list *ap)
 		len = ft_wclen(s);
 	else
 		len = ft_strlen(nulltab);
+		printf ("plop %d\n", len);
 	if (env->format.precision != -1 && env->format.precision < len)
 		len = env->format.precision;
 	if (env->format.padding != 2)

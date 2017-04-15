@@ -1,1 +1,1 @@
-gcc -g main.c -L. -lftprintf -Ilibft
+gcc main.c -L. -lftprintf -Ilibft
