@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_c.c                                        :+:      :+:    :+:   */
+/*   ft_wcfunc.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/09 16:16:00 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/16 16:07:49 by jrichard         ###   ########.fr       */
+/*   Created: 2017/04/16 15:45:16 by jrichard          #+#    #+#             */
+/*   Updated: 2017/04/16 16:01:15 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "conversion.h"
+#ifndef FT_WCFUNC_H
+# define FT_WCFUNC_H
 
-int			convert_c(t_printf *env, va_list *ap)
-{
-	char	c;
+# include <wchar.h>
 
-	if (env->format.length_modifier == L)
-		return (convert_c2(env, ap));
-	else
-	{
-		c = (char)va_arg(*ap, int);
-		if (env->format.padding != 2)
-			padding(env, env->format.min_field - 1, 0);
-		copy_to_buff(env, &c, 1);
-		padding(env, env->format.min_field - 1, 0);
-		return (1);
-	}
-}
+int	ft_wclen(wchar_t c);
+int	ft_wcslen(wchar_t *s);
+
+#endif

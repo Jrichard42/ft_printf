@@ -6,7 +6,7 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 19:20:11 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/15 22:20:14 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/16 16:04:28 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int				convert_x2(t_printf *env, va_list *ap);
 int				convert_o(t_printf *env, va_list *ap);
 int				convert_o2(t_printf *env, va_list *ap);
 int				convert_p(t_printf *env, va_list *ap);
+int				convert_b(t_printf *env, va_list *ap);
 
 #endif

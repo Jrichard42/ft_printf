@@ -6,19 +6,21 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 22:26:35 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/16 01:53:16 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/16 16:23:32 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <wchar.h>
+#include "ft_wcfunc.h"
 #include "libft.h"
 #include "conversion.h"
 
-/*int					get_real_precision(t_printf *env, wchar_t *s, int len)
+static int			get_real_precision(t_printf *env, wchar_t *s, int len)
 {
-	wchar_t			c;
+	int				real;
+	int				tmp;
 
+	real = 0;
 	if (!s)
 	{
 		if (env->format.precision != -1 && env->format.precision < len)
@@ -30,10 +32,16 @@
 	{
 		while (*s)
 		{
-			c = *s;
+			tmp = ft_wclen(*s);
+			if (real + tmp > env->format.precision)
+				break ;
+			real += tmp;
+			++s;
 		}
+		return (real);
 	}
-}*/
+	return (len);
+}
 
 static int			put_wchar(t_printf *env, wchar_t c, int len)
 {
@@ -118,24 +126,25 @@ int					convert_s2(t_printf *env, va_list *ap)
 	wchar_t			*s;
 	int				len;
 	char			nulltab[7];
+	int				i;
 
+	i = 0;
 	ft_strcpy(nulltab, "(null)\0");
 	s = va_arg(*ap, wchar_t *);
 	if (s)
 		len = ft_wcslen(s);
 	else
 		len = ft_strlen(nulltab);
-	if (env->format.precision != -1 && env->format.precision < len)
-		len = env->format.precision;
+	while (s && s[i])
+		if (check_char(s[i++]) == -1)
+			return (0);
+	len = get_real_precision(env, s, len);
 	if (env->format.padding != 2)
 		padding(env, env->format.min_field - len, 0);
-	if (s)
-	{
-		if (put_str_in_tab(env, s, len) == -1)
-			return (-1);
-	}
-	else
+	if (!s)
 		copy_to_buff(env, nulltab, len);
+	else if (put_str_in_tab(env, s, len) == -1)
+		return (0);
 	padding(env, env->format.min_field - len, 0);
 	return (1);
 }

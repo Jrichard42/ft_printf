@@ -6,11 +6,11 @@
 /*   By: jrichard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/16 01:49:32 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/16 01:53:02 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/16 16:17:11 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <wchar.h>
+#include "ft_wcfunc.h"
 
 int					ft_wclen(wchar_t c)
 {
@@ -21,6 +21,8 @@ int					ft_wclen(wchar_t c)
 	first_byte = 0;
 	nb_byte = 0;
 	last = 0;
+	if (c < 128)
+		return (1);
 	while (c != 0)
 	{
 		last = 128 | (c & 0x3f);

@@ -6,7 +6,7 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 13:19:39 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/15 22:31:20 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/16 16:07:41 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_ptr_flag		g_ptr_flag[6] = {{'#', &alternate_flag},
 	{0, NULL}
 };
 
-static t_ptr_convert	g_ptr_convert[16] = {{'%', &convert_percent},
+static t_ptr_convert	g_ptr_convert[17] = {{'%', &convert_percent},
 	{'s', &convert_s},
 	{'S', &convert_s2},
 	{'d', &convert_d_i},
@@ -38,6 +38,7 @@ static t_ptr_convert	g_ptr_convert[16] = {{'%', &convert_percent},
 	{'o', &convert_o},
 	{'O', &convert_o2},
 	{'p', &convert_p},
+	{'b', &convert_b},
 	{0, NULL}
 };
 
