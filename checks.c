@@ -6,7 +6,7 @@
 /*   By: jrichard <jrichard@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 13:19:39 by jrichard          #+#    #+#             */
-/*   Updated: 2017/04/16 16:07:41 by jrichard         ###   ########.fr       */
+/*   Updated: 2017/04/29 17:21:09 by jrichard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "length_modifier.h"
 #include "libft.h"
 
-static t_ptr_flag		g_ptr_flag[6] = {{'#', &alternate_flag},
+static const t_ptr_flag		g_ptr_flag[6] = {{'#', &alternate_flag},
 	{'0', padding1_flag},
 	{'-', padding2_flag},
 	{' ', signing1_flag},
@@ -23,7 +23,7 @@ static t_ptr_flag		g_ptr_flag[6] = {{'#', &alternate_flag},
 	{0, NULL}
 };
 
-static t_ptr_convert	g_ptr_convert[17] = {{'%', &convert_percent},
+static const t_ptr_convert	g_ptr_convert[17] = {{'%', &convert_percent},
 	{'s', &convert_s},
 	{'S', &convert_s2},
 	{'d', &convert_d_i},
@@ -42,7 +42,7 @@ static t_ptr_convert	g_ptr_convert[17] = {{'%', &convert_percent},
 	{0, NULL}
 };
 
-static t_ptr_length		g_ptr_length[6] = {{'h', &length_h},
+static const t_ptr_length	g_ptr_length[6] = {{'h', &length_h},
 	{'l', &length_l},
 	{'j', &length_j},
 	{'z', &length_z},

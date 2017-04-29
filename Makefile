@@ -6,7 +6,7 @@
 #    By: jrichard <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/14 15:21:48 by jrichard          #+#    #+#              #
-#    Updated: 2017/04/16 16:05:29 by jrichard         ###   ########.fr        #
+#    Updated: 2017/04/29 17:20:48 by jrichard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC = ft_printf.c parse_str.c checks.c flags.c conversion.c length_modifier.c \
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -Werror
 
 all : $(LIBFT) $(NAME)
 
